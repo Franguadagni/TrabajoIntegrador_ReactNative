@@ -20,10 +20,8 @@ class Login extends Component {
                 console.log('Login ok', response);
 
                 //Cambiar los estados a vacío como están al inicio.
-
-
                 //Redirigir al usuario a la home del sitio.
-                this.props.navigation.navigate('Home')
+                this.props.navigation.navigate('TabNavigation')
 
             })
             .catch( error => {
@@ -33,6 +31,7 @@ class Login extends Component {
             }) 
         } else {
             this.setState({ errorMessage: 'Por favor, completa todos los campos.' });
+            //this.props.navigation.navigate('TabNavigation')
         }
 
     }
@@ -60,7 +59,7 @@ class Login extends Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}  disabled={!this.state.email || !this.state.password} >
                     <Text style={styles.textButton}>Ingresar</Text>    
                 </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Registro')}>
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
                    <Text>No tengo cuenta. Registrarme.</Text>
                 </TouchableOpacity>
             </View>

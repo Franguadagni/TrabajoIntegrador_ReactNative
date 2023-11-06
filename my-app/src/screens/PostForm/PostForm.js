@@ -3,9 +3,9 @@ import {db, auth } from '../../firebase/config';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 
 class PostForm extends Component{
-    contructor(){
-        super()
-        this.state={
+    constructor(){
+      super()
+      this.state={
             textoPost: "",
         }
     }

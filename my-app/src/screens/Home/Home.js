@@ -1,8 +1,7 @@
 import react, { Component } from 'react';
 import {TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList} from 'react-native';
 import { db, auth } from '../../firebase/config';
-import PostForm from '../PostForm/PostForm';
-import Post from '../../components/Post/Post';
+import Post from '../Post/Post';
 
 class Home extends Component{
     constructor(){
@@ -13,7 +12,10 @@ class Home extends Component{
     }
     componentDidMount(){
         //Traer los datos de Firebase y cargarlos en el estado.
-        db.collection('posts').onSnapshot(
+        db.collection('posts')
+        .orderBy('createdAt', 'desc')
+        .limit(12)
+        .onSnapshot(
             listaPosts => {
                 let postsAMostrar = [];
 
@@ -38,13 +40,12 @@ class Home extends Component{
         console.log(this.state);
         return(
             <View>
-                <Text>HOME</Text>
+                <Text>Home</Text>
                 <TouchableOpacity onPress={()=>this.logout()}>
                     <Text>Logout</Text>
                 </TouchableOpacity>
                
-                <Text>Crear nuevo post</Text>
-                <PostForm />
+               
 
                 <Text>Lista de posteos creados</Text>
                 

@@ -40,6 +40,7 @@ class Register extends Component {
                         profileImage: profileImage || '',
                         createdAt: Date.now(),
                     })
+                    this.props.navigation.navigate("Login")
                    
                 })
                 .catch(error => {

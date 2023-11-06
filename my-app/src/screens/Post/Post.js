@@ -53,7 +53,7 @@ class Post extends Component {
             <View>
                 <Text>{ this.props.dataPost.datos.owner }</Text>
                 <Text>{ this.props.dataPost.datos.textoPost }</Text>
-                <Text>Cantidad de Likes:{ this.state.cantidadDeLikes }</Text>
+                <Text>Likes:{ this.state.cantidadDeLikes }</Text>
                 {
                     this.state.like ?
                         <TouchableOpacity style={styles.button} onPress={()=>this.unlike()}>
