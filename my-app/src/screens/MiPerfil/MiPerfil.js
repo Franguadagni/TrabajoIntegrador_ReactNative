@@ -53,11 +53,11 @@ class MiPerfil extends Component {
         console.log(this.state);
         return(
             <View>
-                <Text> Bienvenido {this.state.infoUser.userName}</Text>
-                <Text>Bio: {this.state.infoUser.bio}</Text>
-                <Text>Tu mail: {auth.currentUser.email}</Text>
+                <Text>Bienvenido {this.state.infoUser.userName}</Text>
+                <Text>Biografia: {this.state.infoUser.bio}</Text>
+                <Text>Mail: {auth.currentUser.email}</Text>
                 
-                <Text>Tus posteos:</Text>
+                <Text>Mis posteos:</Text>
 
                 <View>
                 <FlatList

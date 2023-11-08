@@ -69,8 +69,16 @@ class Post extends Component {
                         </TouchableOpacity>
 
                     }
+
     
                     <Text style={styles.likeCount}>{this.state.cantidadDeLikes} Likes</Text>
+                </View>
+
+                <View> 
+                <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                    'Comment', {id:this.props.dataPost.id})}>
+                    <Text> Agregar comentario</Text>
+                </TouchableOpacity>
                 </View>
             </View>
 
