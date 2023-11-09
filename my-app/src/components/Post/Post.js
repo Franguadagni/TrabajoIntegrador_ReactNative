@@ -53,7 +53,13 @@ class Post extends Component {
         return (
             <View style={styles.postContainer}>
                 <View style={styles.userInfo}>
-                    <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
+                    <TouchableOpacity onPress={()=> this.props.navigation.navigate(
+                    'Navigation',
+                    {
+                        screen: 'SuPerfil',
+                        params:{email:this.props.data.owner}})}> 
+                        <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
+                    </TouchableOpacity>
                 </View>
                 <Text style={styles.postText}>{this.props.dataPost.datos.textoPost}</Text>
                 <View style={styles.interactionBar}>
