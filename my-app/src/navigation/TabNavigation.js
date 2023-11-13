@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from "../screens/Home/Home";
 import PostForm from '../screens/PostForm/PostForm';
 import MiPerfil from '../screens/MiPerfil/MiPerfil';
+import Buscador from '../screens/Buscador/Buscador';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,6 +15,8 @@ export default function TabNav(){
             <Tab.Screen name="Home" component={Home} /> 
             <Tab.Screen name="Crear Post" component={PostForm}/>
             <Tab.Screen name="Mi Perfil" component={MiPerfil}/>
+            <Tab.Screen name="Buscar" component={Buscador}/>
+
         </Tab.Navigator>
     )
 }

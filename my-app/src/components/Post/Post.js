@@ -9,7 +9,8 @@ class Post extends Component {
         super(props);
         this.state = {
             like: false,
-            cantidadDeLikes: this.props.dataPost.datos.likes.lenght
+            cantidadDeLikes: this.props.dataPost.datos.likes.lenght,
+            cantidadComentarios: this.props.dataPost.datos.comentarios.length
         }
     }
     componentDidMount() {
@@ -50,14 +51,16 @@ class Post extends Component {
     render() {
         console.log(this.props)
 
+
         return (
             <View style={styles.postContainer}>
                 <View style={styles.userInfo}>
-                    <TouchableOpacity onPress={()=> this.props.navigation.navigate(
-                    'Navigation',
-                    {
-                        screen: 'SuPerfil',
-                        params:{email:this.props.data.owner}})}> 
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                        'Navigation',
+                        {
+                            screen: 'SuPerfil',
+                            params: { email: this.props.data.owner }
+                        })}>
                         <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
                     </TouchableOpacity>
                 </View>
@@ -65,26 +68,26 @@ class Post extends Component {
                 <View style={styles.interactionBar}>
                     {
                         this.state.like ?
-                        <TouchableOpacity style={styles.likeButton} onPress={() => this.unlike()}>
-                            <FontAwesome name='heart' color='red' size={20} />
-                        </TouchableOpacity>
+                            <TouchableOpacity style={styles.likeButton} onPress={() => this.unlike()}>
+                                <FontAwesome name='heart' color='red' size={20} />
+                            </TouchableOpacity>
 
-                        :
-                        <TouchableOpacity style={styles.likeButton} onPress={() => this.likear()}>
-                            <FontAwesome name='heart-o' color='black' size={20} />
-                        </TouchableOpacity>
+                            :
+                            <TouchableOpacity style={styles.likeButton} onPress={() => this.likear()}>
+                                <FontAwesome name='heart-o' color='black' size={20} />
+                            </TouchableOpacity>
 
                     }
 
-    
+
                     <Text style={styles.likeCount}>{this.state.cantidadDeLikes} Likes</Text>
                 </View>
-
-                <View> 
-                <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                    'Comment', {id:this.props.dataPost.id})}>
-                    <Text> Agregar comentario</Text>
-                </TouchableOpacity>
+                <View>
+                    <Text>{this.state.cantidadComentarios} Comentarios</Text>
+                    <TouchableOpacity style={styles.commentButton} onPress={() => this.props.navigation.navigate(
+                        'Comment', { id: this.props.dataPost.id })}>
+                        <FontAwesome name='comment' color='#3498db' size={20} />
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -127,6 +130,9 @@ const styles = StyleSheet.create({
     likeCount: {
         fontSize: 14,
         color: '#555',
+    },
+    commentButton: {
+        marginTop: 10,
     },
 });
 

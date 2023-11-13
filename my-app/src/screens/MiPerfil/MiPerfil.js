@@ -56,6 +56,9 @@ class MiPerfil extends Component {
                 <Text>Bienvenido {this.state.infoUser.userName}</Text>
                 <Text>Biografia: {this.state.infoUser.bio}</Text>
                 <Text>Mail: {auth.currentUser.email}</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditarPerfil')}>
+                    <Text>Editar mi perfil</Text>
+                </TouchableOpacity>
                 
                 <Text>Mis posteos:</Text>
 
