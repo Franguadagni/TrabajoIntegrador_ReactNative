@@ -8,6 +8,7 @@ import Login from '../screens/Login/Login';
 import TabNavigation from './TabNavigation';
 import Comment from '../screens/Comment/Comment';
 import EditarPerfil from '../screens/EditarPerfil/editarPerfil';
+import SuPerfil from '../screens/SuPerfil/SuPerfil';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,7 +23,9 @@ function Navigation() {
         <Stack.Screen name='TabNavigation' component={TabNavigation} options= {{ headerShown : false}}/>
         <Stack.Screen name='Comment' component={Comment} options= {{ headerShown : false}}/>
         <Stack.Screen name='EditarPerfil' component={EditarPerfil} options= {{ headerShown : false}}/>
+        <Stack.Screen name='SuPerfil' component={SuPerfil} options= {{ headerShown : false}}/>
       </Stack.Navigator> 
+
     </NavigationContainer>
   ); 
 };

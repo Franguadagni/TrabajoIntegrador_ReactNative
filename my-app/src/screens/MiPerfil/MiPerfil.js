@@ -24,7 +24,7 @@ class MiPerfil extends Component {
                 listaPosts.forEach(unPost => {
                     postsAMostrar.push({
                         id: unPost.id,
-                        datos: unPost.data()
+                        datos: unPost.data(),
                     })
                 })
 

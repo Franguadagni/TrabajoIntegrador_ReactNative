@@ -7,9 +7,10 @@ import { FontAwesome } from '@expo/vector-icons'
 class Post extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props)
         this.state = {
             like: false,
-            cantidadDeLikes: this.props.dataPost.datos.likes.lenght,
+            cantidadDeLikes: this.props.dataPost.datos.likes.length,
             cantidadComentarios: this.props.dataPost.datos.comentarios.length
         }
     }
@@ -56,11 +57,7 @@ class Post extends Component {
             <View style={styles.postContainer}>
                 <View style={styles.userInfo}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                        'Navigation',
-                        {
-                            screen: 'SuPerfil',
-                            params: { email: this.props.data.owner }
-                        })}>
+                        'SuPerfil', this.props.dataPost.datos.owner )}>
                         <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
                     </TouchableOpacity>
                 </View>

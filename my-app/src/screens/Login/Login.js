@@ -12,6 +12,14 @@ class Login extends Component {
         }
     }
 
+componentDidMount(){
+    auth.onAuthStateChanged((user)=> {
+        if (user){
+            this.props.navigation.navigate("TabNavigation");
+        }
+    })
+}
+
     login (email, pass){
         if(email && pass){
         auth.signInWithEmailAndPassword(email, pass)
@@ -35,6 +43,7 @@ class Login extends Component {
         }
 
     }
+
 
     render(){
         return(
