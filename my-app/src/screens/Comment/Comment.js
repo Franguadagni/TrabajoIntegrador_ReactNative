@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   },
   goBackText: {
     marginTop: 20,
-    color: '#3897f0',
+    color: '#black',
     textDecorationLine: 'underline',
   },
 });

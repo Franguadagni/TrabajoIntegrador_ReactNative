@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
 import React, { Component } from 'react';
 import { db } from "../../firebase/config"
 
@@ -56,28 +56,30 @@ class Buscador extends Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
+                    style={styles.input}
                     keyboardType='default'
                     placeholder='Buscar por username'
                     onChangeText={(text) => this.controlarCambios(text)}
                     value={this.state.busqueda}
                 />
                 <TouchableOpacity
+                    style={styles.button}
                     onPress={() => this.buscarUsuarios()}
                 >
-                    <Text>Buscar</Text>
+                    <Text style={styles.buttonText}>Buscar</Text>
                 </TouchableOpacity>
 
                 {this.state.mensaje ? (
-                    <Text>{this.state.mensaje}</Text>
+                    <Text style={styles.message}>{this.state.mensaje}</Text>
                 ) : (
                     <FlatList
                         data={this.state.resultados}
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
-                            <View>
-                                <Text>User Name: {item.data.userName}</Text>
+                            <View style={styles.userContainer}>
+                                <Text style={styles.userName}>User Name: {item.data.userName}</Text>
                             </View>
                         )}
                     />
@@ -86,5 +88,48 @@ class Buscador extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20,
+        backgroundColor: '#fff',
+    },
+    input: {
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+    },
+    button: {
+        backgroundColor: '#3498db',
+        paddingVertical: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    message: {
+        fontSize: 16,
+        marginBottom: 10,
+        color: '#e74c3c',
+    },
+    userContainer: {
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10,
+    },
+    userName: {
+        fontSize: 16,
+    },
+});
+
 
 export default Buscador;

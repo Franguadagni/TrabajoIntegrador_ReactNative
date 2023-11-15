@@ -1,4 +1,4 @@
-import  { View, Text, TouchableOpacity, StyleSheet, FlatList, Image } from 'react-native';
+import  { View, Text, TouchableOpacity, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
 import Post from '../../components/Post/Post';
@@ -6,6 +6,7 @@ import Post from '../../components/Post/Post';
 
 class MiPerfil extends Component {
     constructor(props){
+        
         super(props)
         this.state = {
             posts: [],
@@ -51,30 +52,72 @@ class MiPerfil extends Component {
     }
     render(){
         console.log(this.state);
-        return(
-            <View>
-                <Text>Bienvenido {this.state.infoUser.userName}</Text>
-                <Text>Biografia: {this.state.infoUser.bio}</Text>
-                <Text>Mail: {auth.currentUser.email}</Text>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditarPerfil')}>
-                    <Text>Editar mi perfil</Text>
-                </TouchableOpacity>
-                
-                <Text>Mis posteos:</Text>
+        return (
+            <ScrollView style={styles.container}>
+                <View style={styles.profileInfo}>
+                    <Text style={styles.username}>Bienvenido {this.state.infoUser.userName}</Text>
+                    <Text style={styles.bio}>Biografía: {this.state.infoUser.bio}</Text>
+                    <Text style={styles.email}>Mail: {auth.currentUser.email}</Text>
+                    {/* <Image style={styles.profileImage} source={{ uri: this.state.infoUser.profileImage }} /> */}
+                </View>
 
-                <View>
+                <Text style={styles.sectionTitle}>Mis posteos:</Text>
                 <FlatList
                     data={this.state.posts}
-                    keyExtractor={unPost => unPost.id.toString()}
+                    keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => <Post dataPost={item} />}
                 />
-                </View>
-                <TouchableOpacity onPress={() => this.signOut()}>
-                    <Text> Cerrar sesión</Text>
+
+                <TouchableOpacity onPress={() => this.signOut()} style={styles.logoutButton}>
+                    <Text style={styles.logoutText}>Cerrar sesión</Text>
                 </TouchableOpacity>
-            </View>
-        )
+            </ScrollView>
+        );
     }
+}
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#fff',
+        padding: 20,
+    },
+    profileInfo: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    username: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+    bio: {
+        fontSize: 16,
+        marginBottom: 5,
+    },
+    email: {
+        fontSize: 16,
+        marginBottom: 15,
+    },
+    profileImage: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+    },
+    sectionTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    logoutButton: {
+        backgroundColor: '#ff5a5f',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    logoutText: {
+        color: '#fff',
+        fontWeight: 'bold',
 
 }
+});
 export default MiPerfil

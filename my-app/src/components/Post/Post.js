@@ -1,6 +1,6 @@
 import react, { Component } from 'react';
 import { db, auth } from '../../firebase/config';
-import { TextInput, TouchableOpacity, View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, Image, ScrollView, Alert } from 'react-native';
 import firebase from "firebase"
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -11,7 +11,8 @@ class Post extends Component {
         this.state = {
             like: false,
             cantidadDeLikes: this.props.dataPost.datos.likes.length,
-            cantidadComentarios: this.props.dataPost.datos.comentarios.length
+            cantidadComentarios: this.props.dataPost.datos.comentarios.length,
+            mostrarMensaje: false
         }
     }
     componentDidMount() {
@@ -49,6 +50,26 @@ class Post extends Component {
             )
             .catch(e => console.log(e))
     }
+
+    deletePost = () => {
+        const postOwner = this.props.dataPost.datos.owner;
+        const currentUserEmail = auth.currentUser.email;
+        if (postOwner === currentUserEmail) {
+            db.collection('posts')
+                .doc(this.props.dataPost.id)
+                .delete()
+                .then(() => {
+                    console.log('Post eliminado correctamente');
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el post:', error);
+                });
+            } else {
+                this.setState({mostrarMensaje: true})
+                // Puedes mostrar un mensaje o tomar otra acción para informar al usuario
+            }
+        };
+
     render() {
         console.log(this.props)
 
@@ -63,7 +84,7 @@ class Post extends Component {
                     <Image style={styles.camera} source={{uri:this.props.dataPost.datos.foto}}/>
                 </View>
                 <Text style={styles.postText}>{this.props.dataPost.datos.textoPost}</Text>
-                <View style={styles.interactionBar}>
+                <View style={styles.iconBar}>
                     {
                         this.state.like ?
                             <TouchableOpacity style={styles.likeButton} onPress={() => this.unlike()}>
@@ -79,13 +100,19 @@ class Post extends Component {
 
 
                     <Text style={styles.likeCount}>{this.state.cantidadDeLikes} Likes</Text>
-                </View>
-                <View>
-                    <Text>{this.state.cantidadComentarios} Comentarios</Text>
+                    <Text style = {styles.commentCount} >{this.state.cantidadComentarios} Comentarios</Text>
                     <TouchableOpacity style={styles.commentButton} onPress={() => this.props.navigation.navigate(
                         'Comment', { id: this.props.dataPost.id })}>
-                        <FontAwesome name='comment' color='#3498db' size={20} />
+                        <FontAwesome  name='comment' color='#3498db' size={20} />
                     </TouchableOpacity>
+                    
+                    <TouchableOpacity style = {styles.trashCount} onPress={this.deletePost}>
+                        <FontAwesome name="trash" size={20} color="red" />
+                    </TouchableOpacity>
+                    {this.state.mostrarMensaje?
+                    (<Text> No tienes permiso para eliminar este post. </Text> ):
+                    null}
+                    
                 </View>
             </View>
 
@@ -130,7 +157,7 @@ const styles = StyleSheet.create({
         color: '#555',
     },
     commentButton: {
-        marginTop: 10,
+        marginLeft: 8,
     },
     camera: {
         width: '100%',
@@ -138,6 +165,21 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',  
         marginBottom: 10,
         marginTop: 5
+    },
+    iconBar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    commentCount: {
+        fontSize: 14,
+        color: '#555',
+        marginLeft: 10
+    },
+    trashCount: {
+        position: 'absolute',
+        bottom: 5,
+        right: 5,
     },
 });
 
