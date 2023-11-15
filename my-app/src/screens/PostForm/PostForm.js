@@ -13,7 +13,7 @@ class PostForm extends Component{
         }
     }
 
-    crearPost(owner, textoPost, createdAt){
+    crearPost(){
         //Crear la colección Users
         db.collection('posts').add({
             owner: auth.currentUser.email, //auth.currentUser.email,
@@ -23,11 +23,7 @@ class PostForm extends Component{
             comentarios:[],
             foto: this.state.url
         })
-        .then( ()=> (this.setState({
-          textoPost: "",
-          mostrarCamara: true,
-          url: "",
-        })))
+        .then(console.log("Posteo correctamente"))
         .catch( e => console.log(e))
     }
     onImageUpload(url){
@@ -42,7 +38,7 @@ class PostForm extends Component{
           <View style={styles.formContainer}>
             {
               this.state.mostrarCamara ?
-              <Camara style= {styles.camaraBody} onImageUpload = {(url)=> this.onImageUpload(url)} />
+              <Camara onImageUpload = {(url)=> this.onImageUpload(url)} />
               :
               <View>
                 <Text style={styles.title}>New Post</Text>
@@ -53,7 +49,7 @@ class PostForm extends Component{
                   keyboardType='default'
                   value={this.state.textoPost}
                 />
-                <TouchableOpacity style={styles.button} onPress={() => this.crearPost(auth.currentUser.email, this.state.textoPost, Date.now())}>
+                <TouchableOpacity style={styles.button}  onPress={() => this.crearPost()}>
                   <Text style={styles.textButton}>Post</Text>
                 </TouchableOpacity>
               </View>

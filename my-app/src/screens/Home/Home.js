@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList } from 'react-native';
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 import { db, auth } from '../../firebase/config';
 import Post from '../../components/Post/Post';
 
@@ -37,7 +37,7 @@ class Home extends Component {
     render() {
         console.log(this.state);
         return (
-            <View>
+            <ScrollView>
                 <FlatList
                     data={this.state.posts}
                     keyExtractor={unPost => unPost.id.toString()}
@@ -45,7 +45,7 @@ class Home extends Component {
 
                 />
 
-            </View>
+            </ScrollView>
         )
     }
 }

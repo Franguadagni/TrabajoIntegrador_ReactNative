@@ -1,6 +1,6 @@
 import react, { Component } from 'react';
 import { db, auth } from '../../firebase/config';
-import { TextInput, TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { TextInput, TouchableOpacity, View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import firebase from "firebase"
 import { FontAwesome } from '@expo/vector-icons'
 
@@ -60,6 +60,7 @@ class Post extends Component {
                         'SuPerfil', this.props.dataPost.datos.owner )}>
                         <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
                     </TouchableOpacity>
+                    <Image style={styles.camera} source={{uri:this.props.dataPost.datos.foto}}/>
                 </View>
                 <Text style={styles.postText}>{this.props.dataPost.datos.textoPost}</Text>
                 <View style={styles.interactionBar}>
@@ -130,6 +131,13 @@ const styles = StyleSheet.create({
     },
     commentButton: {
         marginTop: 10,
+    },
+    camera: {
+        width: '100%',
+        aspectRatio: 1,  // Mantener una relación de aspecto cuadrada
+        resizeMode: 'cover',  
+        marginBottom: 10,
+        marginTop: 5
     },
 });
 
