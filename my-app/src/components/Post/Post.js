@@ -78,7 +78,7 @@ class Post extends Component {
             <View style={styles.postContainer}>
                 <View style={styles.userInfo}>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate(
-                        'SuPerfil', this.props.dataPost.datos.owner )}>
+                        'SuPerfil', {mailUser: this.props.dataPost.datos.owner})}>
                         <Text style={styles.username}>Posteo de: {this.props.dataPost.datos.owner}</Text>
                     </TouchableOpacity>
                     <Image style={styles.camera} source={{uri:this.props.dataPost.datos.foto}}/>

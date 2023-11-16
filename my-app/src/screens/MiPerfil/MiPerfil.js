@@ -58,7 +58,10 @@ class MiPerfil extends Component {
                     <Text style={styles.username}>Bienvenido {this.state.infoUser.userName}</Text>
                     <Text style={styles.bio}>Biografía: {this.state.infoUser.bio}</Text>
                     <Text style={styles.email}>Mail: {auth.currentUser.email}</Text>
-                    {/* <Image style={styles.profileImage} source={{ uri: this.state.infoUser.profileImage }} /> */}
+                    <Image style={styles.profileImage} source={{ uri: this.state.infoUser.profileImage }} />
+                    {/* <Text onPress={() => this.props.navigation.navigate("EditarPerfil", {idUser: this.state.id})}>
+                        Editar perfil
+                    </Text> */}
                 </View>
 
                 <Text style={styles.sectionTitle}>Mis posteos:</Text>

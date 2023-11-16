@@ -5,15 +5,19 @@ import { db, auth } from '../../firebase/config';
 class EditarPerfil extends Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             userName: '',
             bio: '',
             profileImage: '',
+            idUser: this.props.route.params.idUser
         }
     }
     guardarCambios() {
+        console.log();
+       let id = this.state.idUser
         db.collection('users')
-            .doc(auth.currentUser.id)
+            .doc(id)
             .update({
                 userName: this.state.userName,
                 bio: this.state.bio,
@@ -27,6 +31,7 @@ class EditarPerfil extends Component {
             });
     }
     render() {
+        console.log(this.state);
         return (
             <View >
                 <Text>Edita tu perfil</Text>
@@ -54,6 +59,7 @@ class EditarPerfil extends Component {
                 <TouchableOpacity  onPress={() => this.guardarCambios()}>
                     <Text> Guardar Cambios</Text>
                 </TouchableOpacity>
+                
             </View>
         )
     }

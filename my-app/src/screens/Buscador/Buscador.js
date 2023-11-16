@@ -79,7 +79,10 @@ class Buscador extends Component {
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
                             <View style={styles.userContainer}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate(
+                                'SuPerfil', {mailUser: item.data.owner})}>
                                 <Text style={styles.userName}>User Name: {item.data.userName}</Text>
+                                </TouchableOpacity>
                             </View>
                         )}
                     />

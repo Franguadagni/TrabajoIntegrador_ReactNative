@@ -23,7 +23,15 @@ class PostForm extends Component{
             comentarios:[],
             foto: this.state.url
         })
-        .then(console.log("Posteo correctamente"))
+        .then(() => {
+          console.log('Posteo correctamente');
+          // Después de crear el post, volver a mostrar la cámara
+          this.setState({
+            mostrarCamara: true,
+            textoPost: '', // Limpiar el texto después de hacer el post
+            url: '', // Limpiar la URL después de hacer el post
+          });
+        })
         .catch( e => console.log(e))
     }
     onImageUpload(url){
