@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
     },
     commentButton: {
         marginLeft: 8,
+        
     },
     camera: {
         width: '100%',

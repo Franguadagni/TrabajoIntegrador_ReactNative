@@ -99,15 +99,17 @@ class Camara extends Component {
 
 const styles = StyleSheet.create({
     formContainer: {
-        height: `60vh`,
+        height: `90vh`,
         widht: `100vw`,
+        justifyContent: 'center',
     },
     camera: {
         widht: '100%',
         height: '100%',
+        
     },
     input: {
-      height: 20,
+      height: 40,
       paddingVertical: 15,
       paddingHorizontal: 10,
       borderWidth: 1,
@@ -117,17 +119,19 @@ const styles = StyleSheet.create({
       marginVertical: 10,
     },
     button: {
-      backgroundColor: "blue",
-      paddingHorizontal: 10,
-      paddingVertical: 6,
-      textAlign: "center",
-      borderRadius: 4,
-      borderWidth: 1,
-      borderStyle: "solid",
-      borderColor: "#28a745",
+        backgroundColor: '#0095f6',
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginTop: 10,
+        borderColor: '#0077c2',
+        height: 40,
+        justifyContent: 'center', 
     },
     textButton: {
       color: "#fff",
+      fontWeight: 'bold',
+      textAlign: 'center',
     },
   });
 

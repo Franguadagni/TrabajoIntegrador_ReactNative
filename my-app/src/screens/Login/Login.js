@@ -47,63 +47,86 @@ componentDidMount(){
 
     render(){
         return(
-            <View style={styles.formContainer}>
-                <Text>Login</Text>
-                {this.state.errorMessage ? <Text style={styles.errorText}>{this.state.errorMessage}</Text> : null}
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({email: text})}
-                    placeholder='email'
-                    keyboardType='email-address'
-                    value={this.state.email}
+            <View style={styles.container}>
+                <View style={styles.formContainer}>
+                    <Text style={styles.title} >Login</Text>
+                    {this.state.errorMessage ? <Text style={styles.errorText}>{this.state.errorMessage}</Text> : null}
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(text)=>this.setState({email: text})}
+                        placeholder='Email'
+                        keyboardType='email-address'
+                        value={this.state.email}
+                        />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(text)=>this.setState({password: text})}
+                        placeholder='Password'
+                        keyboardType='default'
+                        secureTextEntry={true}
+                        value={this.state.password}
                     />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({password: text})}
-                    placeholder='password'
-                    keyboardType='default'
-                    secureTextEntry={true}
-                    value={this.state.password}
-                />
-                <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}  disabled={!this.state.email || !this.state.password} >
-                    <Text style={styles.textButton}>Ingresar</Text>    
-                </TouchableOpacity>
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
-                   <Text>No tengo cuenta. Registrarme.</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.button} onPress={()=>this.login(this.state.email, this.state.password)}  disabled={!this.state.email || !this.state.password} >
+                        <Text style={styles.textButton}>Ingresar</Text>    
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={ () => this.props.navigation.navigate('Register')}>
+                    <Text style={styles.registerText} >No tengo cuenta. Registrarme.</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+
     formContainer:{
-        paddingHorizontal:10,
-        marginTop: 20,
+        paddingHorizontal: 40,
+        width: '100%',
+        //marginTop: 20,
+    },
+    title: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        textAlign: 'center',
     },
     input:{
-        height:20,
-        paddingVertical:15,
+        height: 40,
         paddingHorizontal: 10,
-        borderWidth:1,
-        borderColor: '#ccc',
-        borderStyle: 'solid',
-        borderRadius: 6,
-        marginVertical:10,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: '#dbdbdb',
+        borderRadius: 5,
     },
     button:{
-        backgroundColor:'blue',
-        paddingHorizontal: 10,
-        paddingVertical: 6,
-        textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: '#28a745'
+        backgroundColor: '#0095f6',
+        paddingVertical: 15,
+        borderRadius: 5,
+        alignItems: 'center',
+        borderColor: '#0089e0',
     },
     textButton:{
-        color: '#fff'
-    }
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    registerText: {
+        marginTop: 20,
+        textAlign: 'center',
+        color: '#003569',
+        fontWeight: 'bold',
+    },
+    errorText: {
+        color: 'red',
+        marginBottom: 10,
+        textAlign: 'center',
+    },
 
 })
 
