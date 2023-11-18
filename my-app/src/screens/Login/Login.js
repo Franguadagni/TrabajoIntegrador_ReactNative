@@ -34,7 +34,7 @@ componentDidMount(){
             })
             .catch( error => {
                 //Cuando Firebase responde con un error.
-                this.setState({ errorMessage: error.message });
+                this.setState({ errorMessage: "El mail o la contraseña son incorrectos" });
                     console.error('Firebase authentication error:', error);
             }) 
         } else {
