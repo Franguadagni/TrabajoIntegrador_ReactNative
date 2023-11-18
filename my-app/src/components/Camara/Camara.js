@@ -99,9 +99,8 @@ class Camara extends Component {
 
 const styles = StyleSheet.create({
     formContainer: {
-        height: `90vh`,
+        height: `60vh`,
         widht: `100vw`,
-        justifyContent: 'center',
     },
     camera: {
         widht: '100%',
