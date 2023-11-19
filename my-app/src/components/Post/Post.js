@@ -106,11 +106,18 @@ class Post extends Component {
                         <FontAwesome  name='comment' color='#3498db' size={20} />
                     </TouchableOpacity>
                     
-                    <TouchableOpacity style = {styles.trashCount} onPress={this.deletePost}>
+                    
+                    {this.state.mostrarMensaje ? null : (
+                    <TouchableOpacity style={styles.trashCount} onPress={this.deletePost}>
                         <FontAwesome name="trash" size={20} color="red" />
                     </TouchableOpacity>
-                    {this.state.mostrarMensaje?
-                    (<Text> No tienes permiso para eliminar este post. </Text> ):
+    )}
+                    {this.state.mostrarMensaje? (
+                        <View style={styles.errorMessageContainer}>
+                        <FontAwesome name="exclamation-circle" size={15} color="red" />
+                        <Text style={styles.errorMessage}>No tienes permiso para eliminar este post.</Text>
+                        </View>
+                    ):
                     null}
                     
                 </View>
@@ -182,6 +189,14 @@ const styles = StyleSheet.create({
         bottom: 5,
         right: 5,
     },
+    errorMessageContainer: {
+        marginLeft: 750,
+        flexDirection: 'row',
+        alignItems: 'right',
+    },
+    errorMessage:{
+        marginLeft: 10,
+    }
 });
 
 export default Post;
