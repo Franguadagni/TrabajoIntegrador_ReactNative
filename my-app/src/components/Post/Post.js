@@ -113,9 +113,9 @@ class Post extends Component {
                     </TouchableOpacity>
     )}
                     {this.state.mostrarMensaje? (
-                        <View style={styles.errorMessageContainer}>
+                        <View style={[styles.errorMessageContainer, styles.errorMessageContainerPost]}>
                         <FontAwesome name="exclamation-circle" size={15} color="red" />
-                        <Text style={styles.errorMessage}>No tienes permiso para eliminar este post.</Text>
+                        <Text style={[styles.errorMessage, styles.smallErrorMessage]}>No tienes permiso para eliminar este post.</Text>
                         </View>
                     ):
                     null}
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        marginBottom: 10, 
     },
     userInfo: {
         marginBottom: 10,
@@ -190,13 +191,28 @@ const styles = StyleSheet.create({
         right: 5,
     },
     errorMessageContainer: {
-        marginLeft: 750,
         flexDirection: 'row',
-        alignItems: 'right',
+        alignItems: 'center',
+        backgroundColor: '#f8d7da', 
+        padding: 10,
+        borderRadius: 5,
+        marginBottom: 10,
+        
     },
     errorMessage:{
+        color: '#721c24', 
         marginLeft: 10,
-    }
+    },
+    smallErrorMessageContainer: {
+        padding: 5,
+      },
+      smallErrorMessage: {
+        fontSize: 12, 
+      },
+      errorMessageContainerPost: {
+        marginTop: 5,
+        alignSelf: 'stretch', 
+      },
 });
 
 export default Post;
