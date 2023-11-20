@@ -128,8 +128,8 @@ class Post extends Component {
 }
 const styles = StyleSheet.create({
     postContainer: {
-        margin: 10,
-        padding: 10,
+        margin: 45,
+        padding: 20,
         backgroundColor: '#fff',
         borderRadius: 10,
         shadowColor: '#000',

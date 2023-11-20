@@ -57,6 +57,7 @@ class Buscador extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.formContainer}> 
                 <TextInput
                     style={styles.input}
                     keyboardType='default'
@@ -87,6 +88,7 @@ class Buscador extends Component {
                         )}
                     />
                 )}
+                </View>
             </View>
         )
     }
@@ -97,21 +99,27 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    formContainer:{
+        paddingHorizontal: 40,
+        width: '100%',
     },
     input: {
         height: 40,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: '#dbdbdb',
         borderRadius: 5,
         paddingHorizontal: 10,
         marginBottom: 10,
     },
     button: {
-        backgroundColor: '#3498db',
-        paddingVertical: 10,
+        backgroundColor: '#0095f6',
+        paddingVertical: 15,
         borderRadius: 5,
         alignItems: 'center',
-        marginBottom: 10,
+        borderColor: '#0089e0',
     },
     buttonText: {
         color: '#fff',
